@@ -1,3 +1,15 @@
+.ingredients-container {
+	display: flex;
+	flex-direction: column;
+	width: 25%;
+}
+
+.ingredients-list {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
 .ingredient {
 	list-style: none;
 }

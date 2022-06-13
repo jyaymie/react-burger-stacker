@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import IngredientList from '../Ingredients/IngredientList';
+import Form from '../Form/Form';
 import BurgerPane from '../BurgerPane/BurgerPane';
 
 const initialIngredients = [
@@ -25,13 +26,28 @@ function App() {
 	function onIngredientAdd(ingredient) {
 		setBurgerStack([ingredient, ...burgerStack]);
 	}
+
+	function handleFormSubmit(e) {
+		e.preventDefault();
+		console.log(e.target.ingredient_name.value);
+		setIngredients([
+			...ingredients,
+			{
+				name: e.target.ingredient_name.value,
+				color: e.target.ingredient_color.value,
+			},
+		]);
+		e.target.reset();
+	}
+
 	return (
 		<div className='App'>
+			<Form handleFormSubmit={handleFormSubmit} />
 			<IngredientList
 				ingredients={ingredients}
 				onIngredientAdd={onIngredientAdd}
 			/>
-			<BurgerPane burgerStack={burgerStack} setBurgerStack={setBurgerStack}/>
+			<BurgerPane burgerStack={burgerStack} setBurgerStack={setBurgerStack} />
 		</div>
 	);
 }
